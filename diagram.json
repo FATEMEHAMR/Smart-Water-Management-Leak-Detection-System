@@ -1,0 +1,137 @@
+{
+  "version": 1,
+  "author": "Anonymous maker",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": 106.2, "left": 297, "attrs": {} },
+    {
+      "type": "wokwi-hc-sr04",
+      "id": "ultrasonic1",
+      "top": -65.7,
+      "left": 312.7,
+      "attrs": { "distance": "31" }
+    },
+    {
+      "type": "wokwi-clock-generator",
+      "id": "flowInGen",
+      "top": -76.8,
+      "left": 595.2,
+      "attrs": { "frequency": "500" }
+    },
+    {
+      "type": "wokwi-clock-generator",
+      "id": "flowOutGen",
+      "top": 0,
+      "left": 595.2,
+      "attrs": { "frequency": "5" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "turbidityPot",
+      "top": 85.1,
+      "left": 633.4,
+      "attrs": { "value": "10" }
+    },
+    {
+      "type": "wokwi-potentiometer",
+      "id": "phPot",
+      "top": 181.1,
+      "left": 604.6,
+      "attrs": { "value": "50" }
+    },
+    {
+      "type": "wokwi-ds18b20",
+      "id": "tempSensor",
+      "top": 277.27,
+      "left": 599.28,
+      "attrs": { "temperature": "25.6" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "pullupR",
+      "top": 380,
+      "left": 750,
+      "attrs": { "value": "4700" }
+    },
+    {
+      "type": "wokwi-ds1307",
+      "id": "rtc",
+      "top": 378.6,
+      "left": 595.3,
+      "attrs": { "initTime": "2026-07-11T14:00:00" }
+    },
+    { "type": "wokwi-relay-module", "id": "relayPump", "top": -76.6, "left": -48, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relayMainValve", "top": 60, "left": -50, "attrs": {} },
+    {
+      "type": "wokwi-relay-module",
+      "id": "relayInletValve",
+      "top": 200,
+      "left": -50,
+      "attrs": {}
+    },
+    { "type": "wokwi-led", "id": "ledRed", "top": 340, "left": -50, "attrs": { "color": "red" } },
+    {
+      "type": "wokwi-resistor",
+      "id": "resRed",
+      "top": 340,
+      "left": -150,
+      "attrs": { "value": "220" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "ledYellow",
+      "top": 420,
+      "left": -50,
+      "attrs": { "color": "yellow" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "resYellow",
+      "top": 420,
+      "left": -150,
+      "attrs": { "value": "220" }
+    },
+    { "type": "wokwi-buzzer", "id": "buzzer1", "top": 501.6, "left": -46.2, "attrs": {} }
+  ],
+  "connections": [
+    [ "ultrasonic1:VCC", "uno:5V", "red", [] ],
+    [ "ultrasonic1:TRIG", "uno:6", "green", [] ],
+    [ "ultrasonic1:ECHO", "uno:7", "yellow", [] ],
+    [ "ultrasonic1:GND", "uno:GND.1", "black", [] ],
+    [ "flowInGen:CLK", "uno:2", "green", [] ],
+    [ "flowOutGen:CLK", "uno:3", "green", [] ],
+    [ "turbidityPot:VCC", "uno:5V", "red", [] ],
+    [ "turbidityPot:GND", "uno:GND.2", "black", [] ],
+    [ "turbidityPot:SIG", "uno:A0", "blue", [] ],
+    [ "phPot:VCC", "uno:5V", "red", [] ],
+    [ "phPot:GND", "uno:GND.2", "black", [] ],
+    [ "phPot:SIG", "uno:A1", "blue", [] ],
+    [ "tempSensor:VCC", "uno:5V", "red", [] ],
+    [ "tempSensor:GND", "uno:GND.2", "black", [] ],
+    [ "tempSensor:DQ", "uno:8", "green", [] ],
+    [ "tempSensor:DQ", "pullupR:1", "green", [] ],
+    [ "pullupR:2", "uno:5V", "red", [] ],
+    [ "rtc:VCC", "uno:5V", "red", [] ],
+    [ "rtc:GND", "uno:GND.2", "black", [] ],
+    [ "rtc:SDA", "uno:A4", "yellow", [] ],
+    [ "rtc:SCL", "uno:A5", "yellow", [] ],
+    [ "relayPump:VCC", "uno:5V", "red", [] ],
+    [ "relayPump:GND", "uno:GND.1", "black", [] ],
+    [ "relayPump:IN", "uno:9", "green", [] ],
+    [ "relayMainValve:VCC", "uno:5V", "red", [] ],
+    [ "relayMainValve:GND", "uno:GND.1", "black", [] ],
+    [ "relayMainValve:IN", "uno:10", "green", [] ],
+    [ "relayInletValve:VCC", "uno:5V", "red", [] ],
+    [ "relayInletValve:GND", "uno:GND.1", "black", [] ],
+    [ "relayInletValve:IN", "uno:11", "green", [] ],
+    [ "uno:12", "resRed:1", "green", [] ],
+    [ "resRed:2", "ledRed:A", "green", [] ],
+    [ "ledRed:C", "uno:GND.2", "black", [] ],
+    [ "uno:13", "resYellow:1", "green", [] ],
+    [ "resYellow:2", "ledYellow:A", "green", [] ],
+    [ "ledYellow:C", "uno:GND.2", "black", [] ],
+    [ "buzzer1:1", "uno:5", "green", [] ],
+    [ "buzzer1:2", "uno:GND.2", "black", [] ]
+  ],
+  "dependencies": {}
+}
